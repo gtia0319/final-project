@@ -1,5 +1,6 @@
 import random
 def create_board():
+    #create a list to store value
     return [' ']*9
 def print_board(board):
     print()
@@ -10,6 +11,7 @@ def print_board(board):
     print(f' {board[6]} | {board[7]} | {board[8]} ')
     print()
 def check_whether_win(board, symbol):
+    #This is the win condition, like X=X,X=X,X=X
     win_condition=[(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)]
     for a, b, c in win_condition:
         if board[a]==symbol and board[b]==symbol and board[c]==symbol:
@@ -19,7 +21,7 @@ def board_whether_full(board):
     return ' ' not in board
 def Your_movement(board, symbol):
     while True:
-        position=input('please input a number between 1 and 9')
+        position=input('please input a number between 1 and 9: ')
         if position.isdigit():
             index=int(position)-1
             if 0<=index<=8 and board[index]==' ':
@@ -31,10 +33,12 @@ def Your_movement(board, symbol):
             print('Please input a integer!')
 def Your_childhood_self_movement(board, symbol):
     empty_positions=[]
+    #create a empty list to store the index which value is empty
     for i, j in enumerate(board):
         if j==' ':
             empty_positions.append(i)
     index=random.choice(empty_positions)
+    #random choice a index which value is empty
     board[index]=symbol
     print(f'Your childhood self put {symbol} in {index+1}')
 def play_the_game():
@@ -70,7 +74,10 @@ def play_the_game():
             return False
 def main():
     while True:
+    #to make sure there is a winner
         print('Let\'s play the game!')
         if play_the_game():
             break
         print('Game over!')
+if __name__=='__main__':
+    main()
